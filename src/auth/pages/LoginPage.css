@@ -140,7 +140,7 @@
   box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
   .row {
     margin: 0;
@@ -152,7 +152,7 @@
     padding: 30px 20px;
   }
   
-  /* Spacing for mobile layout */
+  /* Mobile */
   .login-form-1 {
     margin-bottom: 0;
     border-bottom: 1px solid #e1e1e1;
