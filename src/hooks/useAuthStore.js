@@ -39,7 +39,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token-init-date', new Date().getTime());
             dispatch(onLogin({name: data.name, uid: data.uid}));
         } catch (error) {
-            dispatch(onLogout(error.response.data.msg || 'Error al registrar usuario:('));
+            dispatch(onLogout(error.response.data.msg || 'Error al registrar usuario, verifique la info:('));
             setTimeout(() => {
                 dispatch(clearErrorMessage());
             }, 10);

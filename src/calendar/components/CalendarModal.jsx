@@ -19,13 +19,13 @@ registerLocale('es', es)
 
 const customStyles = {
     content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
+        maxHeight: 'none',
+        overflow: 'visible', // Importante: hacer que el contenido desborde para los selectores
+      },
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(2px)',
+      }
   };
 
 
@@ -111,36 +111,39 @@ export const CalendarModal = () => {
         className={'modal'}
         overlayClassName={'modal-fondo'}
         closeTimeoutMS={200}
+        ariaHideApp={false} // Añadir esto para evitar advertencias de accesibilidad
     >
         <h1> Nuevo evento </h1>
         <hr />
         <form className="container" onSubmit={onSubmit}>
 
-            <div className="form-group mb-2">
-                <label>Fecha y hora inicio</label>
-                <DatePicker
-                    selected  ={formValues.start}
-                    className ="form-control"
-                    onChange  ={(event)=>onDateChanged(event, 'start')}
-                    dateFormat="Pp"
-                    showTimeSelect
-                    locale='es'
-                    timeCaption="Hora"
-                />
-            </div>
+            <div className="date-pickers-container">
+                <div className="date-picker-group">
+                    <label>Fecha y hora inicio</label>
+                    <DatePicker
+                        selected={formValues.start}
+                        className="form-control"
+                        onChange={(event) => onDateChanged(event, 'start')}
+                        dateFormat="Pp"
+                        showTimeSelect
+                        locale='es'
+                        timeCaption="Hora"
+                    />
+                </div>
 
-            <div className="form-group mb-2">
-                <label>Fecha y hora fin</label>
-                <DatePicker
-                    minDate   ={formValues.start}
-                    selected  ={formValues.end}
-                    className ="form-control"
-                    onChange  ={(event)=>onDateChanged(event, 'end')}
-                    dateFormat="Pp"
-                    showTimeSelect
-                    locale='es'
-                    timeCaption="Hora"
-                />
+                <div className="date-picker-group">
+                    <label>Fecha y hora fin</label>
+                    <DatePicker
+                        minDate={formValues.start}
+                        selected={formValues.end}
+                        className="form-control"
+                        onChange={(event) => onDateChanged(event, 'end')}
+                        dateFormat="Pp"
+                        showTimeSelect
+                        locale='es'
+                        timeCaption="Hora"
+                    />
+                </div>
             </div>
 
             <hr />
@@ -173,9 +176,10 @@ export const CalendarModal = () => {
                 <small id="emailHelp" className="form-text text-muted">Información adicional</small>
             </div>
 
+            
             <button
                 type="submit"
-                className="btn btn-outline-primary btn-block"
+                className="btn-primary" // Usar tus clases CSS personalizadas en lugar de las de Bootstrap
             >
                 <i className="far fa-save"></i>
                 <span> Guardar</span>
