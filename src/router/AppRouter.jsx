@@ -3,6 +3,7 @@ import { LoginPage } from "../auth/"
 import { CalendarPage } from "../calendar/"
 import { useAuthStore } from "../hooks";
 import { useEffect } from "react";
+import { LoadingScreen } from "../calendar/components/LoadingScreen";
 
 
 export const AppRouter = () => {
@@ -17,7 +18,7 @@ export const AppRouter = () => {
   
   if ( status === 'checking') {
     return (
-      <h3>Cargando...</h3>
+      <LoadingScreen/>
     )
   }
 
